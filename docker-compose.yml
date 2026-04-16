@@ -1,0 +1,21 @@
+
+services:
+  # бекенд API
+  backend:
+    build:
+      context: ./WeatherAPI
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" # Проброс порт 8080 из контейнера наружу
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development # Чтобы работал Swagger
+
+  # фронтенд React
+  frontend:
+    build:
+      context: ./WeatherFront
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80" # фронтенд на порту 3000, внутри он слушает 80 (Nginx)
+    depends_on:
+      - backend # Фронт запустится только после того, как стартанет бекенд

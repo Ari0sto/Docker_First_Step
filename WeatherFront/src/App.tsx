@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     // ВАЖНО: порт Swagger!
-    fetch('https://localhost:7073/WeatherForecast')
+    fetch('http://localhost:8080/WeatherForecast')
       .then((response) => response.json())
       .then((data) => {
         setForecasts(data);
